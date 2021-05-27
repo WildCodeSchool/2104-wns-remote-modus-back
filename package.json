@@ -3,6 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "watch": "tsc -w",
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon dist/index.js",
+    "lint": "eslint src/**/*.ts & echo 'lint complete'",
+    "format": "eslint src/**/*.ts --fix & echo 'lint with fixing complete'",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/**.{ts}": [
+      "yarn lint",
+      "yarn prettier --write",
+      "yarn test --watchAll=false --findRelatedTests --bail"
+    ]
+  },
   "dependencies": {
     "@typegoose/typegoose": "^7.6.0",
     "apollo-server": "^2.24.1",
@@ -25,27 +40,16 @@
     "eslint-plugin-jest": "^24.1.0",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.3.0",
     "ts-node": "^10.0.0",
     "tslint": "^6.1.3",
     "typescript": "^4.2.4"
   },
-  "scripts": {
-    "watch": "tsc -w",
-    "start": "ts-node src/index.ts",
-    "dev": "nodemon dist/index.js",
-    "lint": "eslint src/**/*.ts & echo 'lint complete'",
-    "lint-fix": "eslint src/**/*.ts --fix & echo 'lint complete'"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/WildCodeSchool/2104-wns-remote-modus-back.git"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint-staged"
-    }
   },
   "author": "",
   "license": "ISC",
