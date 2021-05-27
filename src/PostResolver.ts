@@ -3,9 +3,18 @@ import { PostModel, Post } from "./models/Post";
 
 @Resolver(Post)
 export class PostResolver {
+    
     @Query(() => [Post])
     async allPosts(): Promise<Post[]> {
         const posts = await PostModel.find()
         return posts
     }
+
+    @Mutation ( () => {
+        async Post(): Promise<Post> {
+            const post = await PostModel.insertOne();
+            return post;
+        }
+    })
+
 }

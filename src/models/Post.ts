@@ -1,25 +1,27 @@
 import { getModelForClass, prop } from '@typegoose/typegoose';
-import { Field, ObjectType } from 'type-graphql';
+import { Field as GraphQLField, ObjectType as GraphQLType } from 'type-graphql';
 
-@ObjectType()
+//? GraphQlType (@ObjectType) permet d'exporter automatiquemer la classe d'en dessous et la marque en tant que type graphql
+@GraphQLType()
 class Skill {
     @prop()
-    @Field()
+    @GraphQLField()
     value: string;
 }
 
-@ObjectType()
+@GraphQLType()
 export class Post {
+        
         @prop({ required: true })
-        @Field()
+        @GraphQLField()
         title!: string;
 
         @prop({ required: true })
-        @Field()
+        @GraphQLField()
         wysiwyg!: string
 
         @prop({ type: Skill })
-        @Field(() => [Skill])
+        @GraphQLField(() => [Skill])
         skills!: Skill[]
 }
 
