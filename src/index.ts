@@ -1,5 +1,7 @@
+import { PostResolver } from 'src/PostResolver';
+import { buildSchema } from "type-graphql";
+import { ApolloServer } from "apollo-server"
 import mongoose from "mongoose";
-import server from "./server";
 import "reflect-metadata";
 
 async function start () {
